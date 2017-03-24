@@ -10,7 +10,7 @@ Files
   7. date.rb
 
 Classes/Methods
-  1. Enigma (.encrypt, .decrypt, .crack) 
+  1. Enigma (.encrypt, .decrypt, .crack)
   2. Date (.today)
   3. KeyGenerator (possibly a method within Enigma)
   4. runner
@@ -39,6 +39,12 @@ Variables
 
     key => [9,6,3,4,8]
 
+    OR
+    
+    key_gen = Random.new
+
+    key_gen.rand(10000..99999)
+
     new_key = key.join #is it necessary to convert to string here?
     => "96348"
 
@@ -46,11 +52,11 @@ Variables
 
     def rotation_values(string)
       #ABCD
-      
+
 
 
     end
-    
+
 
 
   Use date for offset value. Take date, square it, grab last four digits.
@@ -65,7 +71,3 @@ Variables
   space
   period
   comma
-
-
-
-
