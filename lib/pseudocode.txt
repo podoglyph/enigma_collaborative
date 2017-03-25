@@ -7,11 +7,11 @@ Files
   4. encrypted.txt
   5. decrypt.rb
   6. cracked.txt
-  7. date.rb
+  7. date.rb #ruby may already have existing Date class
 
 Classes/Methods
   1. Enigma (.encrypt, .decrypt, .crack)
-  2. Date (.today)
+  2. Date (.today) ##ruby may already have existing Date class
   3. KeyGenerator (possibly a method within Enigma)
   4. runner
   5. offset calculator

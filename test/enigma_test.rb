@@ -27,6 +27,8 @@ class EnigmaTest < Minitest::Test
     assert_equal 5, key_length
   end
 
+  
+
 
 
 end
