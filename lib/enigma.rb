@@ -15,10 +15,10 @@ class Enigma
   end
 
   def assign_rotation
-    a_rotation = key_generator[0].to_i + key_generator[1].to_i
-    b_rotation = key_generator[1].to_i + key_generator[2].to_i
-    c_rotation = key_generator[2].to_i + key_generator[3].to_i
-    d_rotation = key_generator[3].to_i + key_generator[4].to_i
+    a_rotation = key[0].to_i + key[1].to_i
+    b_rotation = key[1].to_i + key[2].to_i
+    c_rotation = key[2].to_i + key[3].to_i
+    d_rotation = key[3].to_i + key[4].to_i
 
   end
 
