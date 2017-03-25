@@ -19,6 +19,14 @@ class EnigmaTest < Minitest::Test
     refute_equal key_1, key_2
   end
 
+  def test_key_is_five_digits
+    e = Enigma.new
+    key = e.key_generator
+    key_length = key.to_s.length
+
+    assert_equal 5, key_length
+  end
+
 
 
 end
