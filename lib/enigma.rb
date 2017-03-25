@@ -29,14 +29,17 @@ class Enigma
   end
 
   def generate_offsets
-    a_offsets = get_date_as_string[-4].to_i
-    b_offsets = get_date_as_string[-3].to_i
-    c_offsets = get_date_as_string[-2].to_i
-    d_offsets = get_date_as_string[-1].to_i
+    a_offset = get_date_as_string[-4].to_i
+    b_offset = get_date_as_string[-3].to_i
+    c_offset = get_date_as_string[-2].to_i
+    d_offset = get_date_as_string[-1].to_i
   end
 
-  def offsetter
-
+  def encryption_value
+    a = a_rotation + a_offset
+    b = b_rotation + b_offset
+    c = c_rotation + c_offset
+    d = d_rotation + d_offset
   end
 
   def encrypt
