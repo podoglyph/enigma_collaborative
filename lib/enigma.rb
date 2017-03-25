@@ -8,6 +8,10 @@ class Enigma
     @date = date
   end
 
+  def key_generator
+
+  end
+
   def encrypt
 
 
