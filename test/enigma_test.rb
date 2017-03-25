@@ -3,11 +3,12 @@ require 'minitest/pride'
 require 'pry'
 require './lib/key_generator.rb'
 
-class KeyGeneratorTest < Minitest::Test
-  def test_class_exists
-    key_gen = KeyGenerator.new
+class EnigmaTest < Minitest::Test
 
-    assert key_gen
+  def test_class_exists
+    e = Enigma.new
+
+    assert e
   end
 
 
