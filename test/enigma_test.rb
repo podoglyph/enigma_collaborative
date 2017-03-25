@@ -10,6 +10,6 @@ class KeyGeneratorTest < Minitest::Test
     assert key_gen
   end
 
-  
+
 
 end
