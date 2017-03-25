@@ -2,13 +2,13 @@ require 'pry'
 
 class Enigma
 
-  def initialize
+  def initialize(message, key = nil, date = nil)
     @message = message
     @key = key
-    @date = nil
+    @date = date
   end
 
-  def encrypt(message, key = nil, date = nil)
+  def encrypt
 
 
   end
