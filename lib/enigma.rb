@@ -1,7 +1,7 @@
 require 'pry'
 
 class Enigma
-  attr_reader :key
+  attr_reader :key, :character_map
 
   def initialize
     @message = ""
@@ -11,6 +11,8 @@ class Enigma
     @b = 0
     @c = 0
     @d = 0
+    #@TODO Add space, comma, period
+    @character_map = ('a'..'z').to_a
   end
 
   def key_generator
@@ -54,3 +56,7 @@ class Enigma
   end
 
 end
+
+e = Enigma.new
+binding.pry
+""
