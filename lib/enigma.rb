@@ -43,8 +43,32 @@ class Enigma
   end
 
   def encrypt
+    # 1. Take in the message.
+    # 2. Extract four characters at a time.
+    # 3. Add encryption values to each character.
+    # 4. Output it all to another file.
+    # 5. Continue until it's finished.
+    message = "This is a secret message ..end.."
 
+    message.each_char do |x|
+      i = 0
+    end
+    new_message = ""
+    i = 0
+    j = 1
+    k = 2
+    l = 3
 
+    until message.length == new_message.length
+      new_message << character_map.index(message[i])
+      new_message << character_map.index(message[j])
+      new_message << character_map.index(message[k])
+      new_message << character_map.index(message[l])
+      i += 4
+      j += 4
+      k += 4
+      l += 4
+    end
   end
 
   def decrypt
