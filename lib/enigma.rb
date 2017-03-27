@@ -1,24 +1,29 @@
 require 'pry'
 
 class Enigma
+  attr_reader :key
 
-  def initialize(message = "", key = 0, date = nil)
-    @message = message
+  def initialize
+    @message = ""
     @key = key
-    @date = date
+    @date = nil
+    @a = 0
+    @b = 0
+    @c = 0
+    @d = 0
   end
 
   def key_generator
     key = Random.new
     key = key.rand(10000..99999)
-    key = key.to_s
+    @key = key.to_s
   end
 
   def assign_rotation
-    a_rotation = key[0].to_i + key[1].to_i
-    b_rotation = key[1].to_i + key[2].to_i
-    c_rotation = key[2].to_i + key[3].to_i
-    d_rotation = key[3].to_i + key[4].to_i
+    @a = (key[0] + key[1]).to_i
+    @b = (key[1] + key[2]).to_i
+    @c = (key[2] + key[3]).to_i
+    @d = (key[3] + key[4]).to_i
 
   end
 
@@ -28,18 +33,11 @@ class Enigma
     squared_offset.to_s
   end
 
-  def generate_offsets
-    a_offset = get_date_as_string[-4].to_i
-    b_offset = get_date_as_string[-3].to_i
-    c_offset = get_date_as_string[-2].to_i
-    d_offset = get_date_as_string[-1].to_i
-  end
-
-  def encryption_value
-    a = a_rotation + a_offset
-    b = b_rotation + b_offset
-    c = c_rotation + c_offset
-    d = d_rotation + d_offset
+  def add_offsets_to_rotation
+    @a += get_date_as_string[-4].to_i
+    @b += get_date_as_string[-3].to_i
+    @c += get_date_as_string[-2].to_i
+    @d += get_date_as_string[-1].to_i
   end
 
   def encrypt
@@ -56,7 +54,3 @@ class Enigma
   end
 
 end
-
-e = Enigma.new
-binding.pry
-""
