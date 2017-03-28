@@ -48,7 +48,5 @@ class Encrypt
   end
 
 end
-
-e = Encrypt.new.character_map
 binding.pry
 ""
