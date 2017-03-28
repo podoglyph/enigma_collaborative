@@ -1,26 +1,28 @@
     encrypted_message = "this is a secret message ..end.."
     decrypted_message = ""
-    i = 0
-    j = 1
-    k = 2
-    l = 3
+
+    def run
+    index_a = 0
+    index_b = 1
+    index_c = 2
+    index_d = 3
 
     until encrypted_message.length == decrypted_message.length
-      break if message[i].nil?
-      rotate_index = character_map.index(message[i])
-      decrypted_char = character_map.rotate(-(rotate_index + @a)[0]
+      break if message[index_a].nil?
+      rotate_index = character_map.index(message[index_a])
+      decrypted_char = character_map.rotate(-(rotate_index + @offset_calc.final_offsets[0])[0]
       decrypted_message << decrypted_char
-      break if message[j].nil?  
-      rotate_index = character_map.index(message[j])
-      decrypted_char = character_map.rotate(-(rotate_index + @b)[0]
+      break if message[index_b].nil?  
+      rotate_index = character_map.index(message[index_b])
+      decrypted_char = character_map.rotate(-(rotate_index + @offset_calc.final_offsets[1])[0]
       decrypted_message << decrypted_char
-      break if message[k].nil?  
-      rotate_index = character_map.index(message[k])
-      decrypted_char = character_map.rotate(-(rotate_index + @c)[0]
+      break if message[index_c].nil?  
+      rotate_index = character_map.index(message[index_c])
+      decrypted_char = character_map.rotate(-(rotate_index + @offset_calc.final_offsets[2])[0]
       decrypted_message << decrypted_char
-      break if message[l].nil?  
-      rotate_index = character_map.index(message[l])
-      decrypted_char = character_map.rotate(-(rotate_index + @d))[0]
+      break if message[index_d].nil?  
+      rotate_index = character_map.index(message[index_d])
+      decrypted_char = character_map.rotate(-(rotate_index + @offset_calc.final_offsets[3]))[0]
       decrypted_message << decrypted_char
       i += 4
       j += 4
