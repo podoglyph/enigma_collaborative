@@ -10,14 +10,6 @@ class Enigma
     @message = ""
   end
 
-  def decrypt
-
-  end
-
-  def crack
-
-  end
-
 end
 
 e = Enigma.new

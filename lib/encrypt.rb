@@ -1,54 +1,46 @@
 require './lib/character_map'
 require './lib/offset_calc'
+#require './lib/message.txt'
 require 'pry'
 require 'pry-state'
 class Encrypt  
-  attr_reader :character_map, :message, :reset_calc, :offset_calc
+  attr_reader :character_map, :message, :reset_calc, :offset_calc, :rotated_map
   attr_accessor :encrypted_message
 
   def initialize
     @character_map = CharacterMap.new.character_map
-    @offset_calc = OffsetCalc.new
-    @reset_calc = @offset_calc.final_offsets
-    @message = "this is a secret message ..end.."
+    @offset_calc = OffsetCalc.new.final_offsets
+    @reset_calc = @offset_calc
+    @message = File.read("./lib/message.txt")#"this is a secret message ..end.."
     @encrypted_message = ""
-    run
   end
 
-  def run
-    index_a = 0
-    index_b = 1
-    index_c = 2
-    index_d = 3
+  def get_char
+    message[0]
+  end
 
-    until message.length == encrypted_message.length
-      break if message[index_a].nil?
-      rotate_index = character_map.index(message[index_a])
-      encrypted_char = character_map.rotate(rotate_index + @offset_calc.final_offsets[0])[0]
-      encrypted_message << encrypted_char
-      break if message[index_b].nil?  
-      rotate_index = character_map.index(message[index_b])
-      encrypted_char = character_map.rotate(rotate_index + @offset_calc.final_offsets[1])[0]
-      encrypted_message << encrypted_char
-      break if message[index_c].nil?  
-      rotate_index = character_map.index(message[index_c])
-      encrypted_char = character_map.rotate(rotate_index + @offset_calc.final_offsets[2])[0]
-      encrypted_message << encrypted_char
-      break if message[index_d].nil?  
-      rotate_index = character_map.index(message[index_d])
-      encrypted_char = character_map.rotate(rotate_index + @offset_calc.final_offsets[3])[0]
-      encrypted_message << encrypted_char
-      index_a += 4
-      index_b += 4
-      index_c += 4
-      index_d += 4
-      
-    end
-    
+  def map_index
+    character_map.index(get_char)
+
+  end
+
+  def rotation_value
+    value = map_index + offset_calc[0]
+  end
+
+  def rotate_map
+    @rotated_map = character_map.rotate(rotation_value)
+  end
+  
+  def encrypt
+    rotate_map
+    @encrypted_message << rotated_map[0]
   end
 
 end
 
 # e = Encrypt.new
+# puts e.encrypt
+
 # binding.pry
 ""
