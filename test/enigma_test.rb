@@ -14,22 +14,6 @@ class EnigmaTest < Minitest::Test
     assert Enigma
   end
 
-  def test_key_generation_outputs_unique_values
-    e = Enigma.new
-    key_1 = e.key_generator
-    key_2 = e.key_generator
-
-    refute_equal key_1, key_2
-  end
-
-  def test_key_is_five_digits
-    e = Enigma.new
-    key = e.key_generator
-    key_length = key.to_s.length
-
-    assert_equal 5, key_length
-  end
-
   def test_rotation_assignment
     e = Enigma.new
     key = "12345"
