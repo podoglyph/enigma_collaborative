@@ -3,12 +3,13 @@ require './lib/offset_calc'
 require 'pry'
 require 'pry-state'
 class Encrypt  
-  attr_reader :character_map, :message
+  attr_reader :character_map, :message, :reset_calc, :offset_calc
   attr_accessor :encrypted_message
 
   def initialize
     @character_map = CharacterMap.new.character_map
     @offset_calc = OffsetCalc.new
+    @reset_calc = @offset_calc.final_offsets
     @message = "this is a secret message ..end.."
     @encrypted_message = ""
     run
@@ -44,9 +45,10 @@ class Encrypt
       
     end
     
-    puts encrypted_message
   end
 
 end
-binding.pry
+
+# e = Encrypt.new
+# binding.pry
 ""
