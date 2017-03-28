@@ -12,9 +12,6 @@ class Enigma
     @character_map = ('a'..'z').to_a
   end
 
-  
-
-
   def decrypt
 
   end
@@ -26,6 +23,3 @@ class Enigma
 end
 
 e = Enigma.new
-e.assign_rotation
-binding.pry
-""
