@@ -3,8 +3,9 @@ require './lib/offset_calc'
 #require './lib/message.txt'
 require 'pry'
 require 'pry-state'
-class Encrypt  
-  attr_reader :character_map, :message, :reset_calc, :offset_calc, :rotated_map
+
+class Encrypt
+  attr_reader :character_map, :message, :reset_calc, :offset_calc, :rotated_map, :chars_in_message, :map_index_values, :values, :rotated_map
   attr_accessor :encrypted_message
 
   def initialize
@@ -13,34 +14,46 @@ class Encrypt
     @reset_calc = @offset_calc
     @message = File.read("./lib/message.txt")#"this is a secret message ..end.."
     @encrypted_message = ""
+    @map_index_values = []
+    @values = []
+    @rotated_map = []
   end
 
   def get_char
-    message[0]
+    @chars_in_message = message.chomp.chars
   end
 
   def map_index
-    character_map.index(get_char)
-
+    get_char
+    chars_in_message.map do |char|
+      map_index_values << character_map.index(char)
+    end
+    map_index_values
   end
 
   def rotation_value
-    value = map_index + offset_calc[0]
+    map_index
+    i = 0
+    map_index_values.map do |map_index|
+      values << map_index + offset_calc[i]
+      i += 1
+      i = 0 if i == 4
+    end
+    values
   end
 
   def rotate_map
-    @rotated_map = character_map.rotate(rotation_value)
+    rotation_value
+     @values.map do |value|
+       rotated_map << character_map.rotate(value).first
+     end
+     rotated_map
+
   end
-  
+
   def encrypt
     rotate_map
-    @encrypted_message << rotated_map[0]
+    @encrypted_message << rotated_map.join
   end
 
 end
-
-# e = Encrypt.new
-# puts e.encrypt
-
-# binding.pry
-""

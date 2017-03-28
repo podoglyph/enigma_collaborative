@@ -98,17 +98,11 @@ class EncryptTest < Minitest::Test
     assert rotation_value > index
   end
 
-  def test_map_rotates_to_place_encryption_value_at_index_zero 
+  def test_map_rotates_to_place_encryption_value_at_index_zero
     e = Encrypt.new
     rotate = e.character_map.rotate(1)
 
     assert_equal "!", rotate[0]
   end
-
-  def test_get_char_brings_set_of_four_chars
-  end
-  
-
-
 
 end
