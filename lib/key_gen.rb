@@ -1,4 +1,5 @@
 require 'pry'
+require 'pry-state'
 
 class KeyGen
   attr_reader :key
