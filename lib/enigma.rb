@@ -1,24 +1,31 @@
 require 'pry'
 require 'pry-state'
 require './lib/key_gen.rb'
+require './lib/offset_calc.rb'
 
 class Enigma
-  attr_reader :character_map, :new_key
+  attr_reader :character_map, :new_key, :rotation_values
 
   def initialize
     @new_key = KeyGen.new.key
     @message = ""
-    @a, @b, @c, @d, @date = nil
+    @date = nil
+    @rotation_values = Array.new(4, nil)
     #@TODO Add space, comma, period
     @character_map = ('a'..'z').to_a
   end
 
   def assign_rotation
-    @a = (new_key[0] + new_key[1]).to_i
-    @b = (new_key[1] + new_key[2]).to_i
-    @c = (new_key[2] + new_key[3]).to_i
-    @d = (new_key[3] + new_key[4]).to_i
-
+    i = 0
+    j = 1
+    @rotation_values.map do |x|
+      #binding.pry
+      x = (new_key[i] + new_key[j]).to_i
+      @rotation_values[i] = x
+      #binding.pry
+      i += 1
+      j += 1
+    end
   end
 
   def get_date_as_string
@@ -45,5 +52,6 @@ class Enigma
 end
 
 e = Enigma.new
-binding.pry
+e.assign_rotation
+#binding.pry
 ""
