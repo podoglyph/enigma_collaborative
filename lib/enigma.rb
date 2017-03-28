@@ -8,12 +8,7 @@ class Enigma
 
   def initialize
     @message = ""
-    #@TODO Add space, comma, period
-    @character_map = ('a'..'z').to_a
   end
-
-  
-
 
   def decrypt
 
