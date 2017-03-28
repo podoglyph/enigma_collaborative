@@ -1,10 +1,12 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'pry'
-require './lib/encrypt'
+require './lib/decrypt'
 
-class EncryptTest < Minitest::Test
+class DecryptTest < Minitest::Test
 
-  def
+  def test_instance_of_class
+    
+  end
 
 end
