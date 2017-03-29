@@ -1,16 +1,17 @@
 require './lib/character_map'
 require './lib/offset_calc'
 
-class Encrypt
-  attr_reader :character_map, :message, :reset_calc, 
+class Encryptor
+  attr_reader :character_map, :message, :offset_values, 
             :offset_calc, :rotated_map, :chars_in_message, 
             :map_index_values, :values, :rotated_map
   attr_accessor :encrypted_message
 
   def initialize(message = "./lib/message.txt")
+  #def initialize(message, key=nil, date=nil)
     @character_map = CharacterMap.new.character_map
-    @offset_calc = OffsetCalc.new.final_offsets
-    @reset_calc = @offset_calc
+    @offset_calc = OffsetCalc.new#.final_offsets
+    @offset_values = @offset_calc.final_offsets
     @message = File.read(message)
     @encrypted_message = ""
     @map_index_values = []
@@ -34,7 +35,7 @@ class Encrypt
     map_index
     i = 0
     map_index_values.map do |index|
-      values << index + offset_calc[i]
+      values << index + offset_values[i]
       i += 1
       i = 0 if i == 4
     end
@@ -49,9 +50,12 @@ class Encrypt
      rotated_map
   end
 
-  def encrypt
+  def encryptor
     rotate_map
     @encrypted_message << rotated_map.join
+    encrypted_file = File.open("./lib/encrypted.txt", "w")
+    encrypted_file.write(encrypted_message)
+    p "Created 'encrypted.txt' with the key #{offset_calc.key} and date #{offset_calc.date} "
   end
 
 end

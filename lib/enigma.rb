@@ -1,15 +1,16 @@
 require 'pry'
 require 'pry-state'
-require './lib/key_gen.rb'
-require './lib/offset_calc.rb'
+require './lib/encrypt.rb'
 
 class Enigma
-  attr_reader :character_map
+  attr_reader :my_message
 
   def initialize
-    @message = ""
+    @my_message = my_message
+  end
+
+  def encrypt
+
   end
 
 end
-
-e = Enigma.new

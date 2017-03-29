@@ -12,6 +12,20 @@ class DecryptTest < Minitest::Test
     assert_instance_of Decrypt, d
   end
 
-  def test_
+  def test_decrypt_pulls_encrypted_file
+    d = Decrypt.new("./lib/hello.txt")
+    output = d.output
+
+    assert_equal "hello", output
+  end
+
+  def test_access_to_key
+    e = Encrypt.new
+    e.encrypt
+    d = Decrypt.new
+    access = @access_key
+
+    refute_nil access
+  end
 
 end

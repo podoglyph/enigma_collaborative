@@ -3,11 +3,13 @@ require 'pry-state'
 require './lib/key_gen.rb'
 
 class OffsetCalc
-  attr_reader :new_key, :rotation_values, :format_date, :final_offsets
+  attr_reader :new_key, :rotation_values, :format_date, 
+  :final_offsets, :key, :date
 
   def initialize
     @new_key = KeyGen.new.key
-    @date = nil
+    @key = new_key
+    @date = date
     @rotation_values = Array.new(4, nil)
     @format_date = format_date
     @final_offsets = []
@@ -35,8 +37,8 @@ class OffsetCalc
   end
 
   def square_date
-    format_date = Time.now.strftime("%d%m%y").to_i
-    format_date = format_date ** 2
+    @date = Time.now.strftime("%d%m%y").to_i
+    format_date = date ** 2
     format_date = format_date.to_s
     format_date = format_date[-4, 4].chars
     @format_date = format_date.map! { |x| x.to_i}
