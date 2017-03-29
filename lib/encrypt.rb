@@ -1,8 +1,5 @@
 require './lib/character_map'
 require './lib/offset_calc'
-#require './lib/message.txt'
-require 'pry'
-require 'pry-state'
 
 class Encrypt
   attr_reader :character_map, :message, :reset_calc, 
@@ -50,7 +47,6 @@ class Encrypt
        rotated_map << character_map.rotate(value).first
      end
      rotated_map
-
   end
 
   def encrypt
