@@ -5,14 +5,16 @@ require 'pry'
 require 'pry-state'
 
 class Encrypt
-  attr_reader :character_map, :message, :reset_calc, :offset_calc, :rotated_map, :chars_in_message, :map_index_values, :values, :rotated_map
+  attr_reader :character_map, :message, :reset_calc, 
+            :offset_calc, :rotated_map, :chars_in_message, 
+            :map_index_values, :values, :rotated_map
   attr_accessor :encrypted_message
 
-  def initialize
+  def initialize(message = "./lib/message.txt")
     @character_map = CharacterMap.new.character_map
     @offset_calc = OffsetCalc.new.final_offsets
     @reset_calc = @offset_calc
-    @message = File.read("./lib/message.txt")#"this is a secret message ..end.."
+    @message = File.read(message)
     @encrypted_message = ""
     @map_index_values = []
     @values = []
@@ -34,8 +36,8 @@ class Encrypt
   def rotation_value
     map_index
     i = 0
-    map_index_values.map do |map_index|
-      values << map_index + offset_calc[i]
+    map_index_values.map do |index|
+      values << index + offset_calc[i]
       i += 1
       i = 0 if i == 4
     end

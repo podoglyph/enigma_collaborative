@@ -36,40 +36,53 @@ class EncryptTest < Minitest::Test
     e = Encrypt.new
 
     refute_nil e.message
-
   end
 
   def test_message_has_contents
     e = Encrypt.new
 
     refute_equal e.message, ""
-
   end
 
   def test_each_instance_outputs_different_encryption
-    skip
-    e_1 = Encrypt.new.encrypted_message
-    e_2 = Encrypt.new.encrypted_message
+    e_1 = Encrypt.new.encrypt
+    e_2 = Encrypt.new.encrypt
 
     refute_equal e_2, e_1
   end
 
-  def test_character_in_message_is_also_in_map
-    skip
+  def test_first_character_in_message_is_also_in_map
     e = Encrypt.new
-    test = e.character_map.include?(e.message)
+    test = e.character_map.include?(e.message[0])
 
     assert test
   end
 
-  def test_one_character_can_be_grabbed
+  def test_every_character_in_message_is_in_map
+    e = Encrypt.new
+    new_message = e.message.chomp.chars
+    test = new_message.all? do |char|
+      e.character_map.include?(char)
+    end
+
+    assert test
+  end
+
+  def test_character_can_be_grabbed
     e = Encrypt.new
     char = e.get_char
 
     refute_nil char
   end
 
-  def test_encrypt_pulls_return_from_get_char
+  def test_message_can_be_grabbed
+    e = Encrypt.new("./lib/hello.txt")
+    message = e.message
+
+    assert_equal "hello", message
+  end
+
+  def test_map_index_pulls_return_from_get_char
     e = Encrypt.new
     e.map_index
 
@@ -83,7 +96,7 @@ class EncryptTest < Minitest::Test
     assert_equal 0, index
   end
 
-  def test_offset_value_exists_for_first_char
+  def test_offset_array_has_four_values
     e = Encrypt.new
     offset_length = e.offset_calc.length
 
@@ -92,10 +105,10 @@ class EncryptTest < Minitest::Test
 
   def test_first_offset_value_plus_index_value_returns_rotation_value
     e = Encrypt.new
-    index = e.map_index
-    rotation_value = e.map_index + e.offset_calc[0]
+    index = e.map_index[0]
+    rotation_values = index + e.offset_calc[0]
 
-    assert rotation_value > index
+    assert rotation_values > index
   end
 
   def test_map_rotates_to_place_encryption_value_at_index_zero
