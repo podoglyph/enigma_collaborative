@@ -4,15 +4,14 @@ require './lib/offset_calc'
 class Encryptor
   attr_reader :character_map, :message, :offset_values, 
             :offset_calc, :rotated_map, :chars_in_message, 
-            :map_index_values, :values, :rotated_map
-  attr_accessor :encrypted_message
+            :map_index_values, :values, :rotated_map, 
+            :encrypted_message
 
-  def initialize(message = "./lib/message.txt")
-  #def initialize(message, key=nil, date=nil)
+  def initialize(message, key = nil, date = nil)
     @character_map = CharacterMap.new.character_map
-    @offset_calc = OffsetCalc.new#.final_offsets
+    @offset_calc = OffsetCalc.new
     @offset_values = @offset_calc.final_offsets
-    @message = File.read(message)
+    @message = message 
     @encrypted_message = ""
     @map_index_values = []
     @values = []
