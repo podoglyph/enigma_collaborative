@@ -58,6 +58,9 @@ class Encryptor
   def encryptor
     rotate_map
     @encrypted_message << encrypted_chars.join
+    encrypted_file = File.open("./lib/encrypted.txt", "w")
+    encrypted_file.write(encrypted_message)
+    p "Created 'encrypted.txt' with the key #{offset_calc.key} and date #{offset_calc.date} "
   end
 
 end

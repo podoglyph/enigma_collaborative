@@ -8,7 +8,7 @@ class Enigma
   def initialize
     @my_message = my_message
     @offset = nil
-    @rotated_map = nil
+    @rotated_map = rotated_map
     @character_map = (' '..'z').to_a
   end
 
