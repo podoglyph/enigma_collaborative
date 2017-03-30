@@ -3,7 +3,7 @@ require 'pry-state'
 require './lib/key_gen.rb'
 
 class OffsetCalc
-  attr_reader :new_key, :rotation_values, :format_date, 
+  attr_reader :new_key, :rotation_values, :format_date,
   :final_offsets, :key, :date
 
   def initialize

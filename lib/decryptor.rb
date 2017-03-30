@@ -3,7 +3,7 @@ require './lib/offset_calc'
 require './lib/encryptor'
 
 class Decryptor
-    attr_reader :output, :input, :map_index_values, :character_map, :chars_in_message, 
+    attr_reader :output, :input, :map_index_values, :character_map, :chars_in_message,
         :values, :offset_values, :rotated_map, :decrypted_message, :key, :rotated_map,
         :decrypted_chars, :today_date
 
@@ -41,6 +41,3 @@ class Decryptor
     end
 
 end
-
-# d = Decryptor.new("+%;JR", "62348", date = nil, offset = [22,33,44,55], rotated_map)
-# d.decryptor

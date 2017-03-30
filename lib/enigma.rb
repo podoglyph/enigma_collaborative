@@ -16,6 +16,7 @@ class Enigma
     encryption = Encryptor.new(my_message)
     encryption.encryptor
     @key = encryption.offset_calc.key
+    @formatted_date = encryption.offset_calc.formatted_date
     @the_date = encryption.offset_date
     @offset = encryption.offset_values
     @rotated_map = encryption.rotated_map
@@ -29,7 +30,7 @@ class Enigma
     #we want to return the decrypted message here.
   end
 
-  def crack(output, date = nil)
+  def crack(output, date = @formatted_date)
 
   end
 
