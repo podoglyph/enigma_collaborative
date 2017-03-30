@@ -4,7 +4,7 @@ require './lib/encryptor.rb'
 require './lib/decryptor.rb'
 
 class Enigma
-  attr_reader :my_message, :key
+  attr_reader :my_message, :key, :offset
 
   def initialize
     @my_message = my_message
@@ -14,19 +14,18 @@ class Enigma
     encryption = Encryptor.new(my_message)
     encryption.encryptor
     @key = encryption.offset_calc.key
-    @offset = encryption.offset_calc.offset_values
+    @offset = encryption.offset_values
     encryption.encrypted_message
   end
 
-  def decrypt(output, key=nil, date = nil)
-    decryption = Decryption.new
+  def decrypt(output, key, date = nil)
+    decryption = Decryptor.new(output, @key)
+    #we want to return the decrypted message here.
   end
 
   def crack(output, date = nil)
 
   end
-  
+
 
 end
-# binding.pry
-# ""
