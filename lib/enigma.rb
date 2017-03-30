@@ -8,6 +8,7 @@ class Enigma
 
   def initialize
     @my_message = my_message
+    @offset = nil
   end
 
   def encrypt(my_message, key = nil, date = nil)
@@ -19,7 +20,7 @@ class Enigma
   end
 
   def decrypt(output, key, date = nil)
-    decryption = Decryptor.new(output, @key)
+    decryption = Decryptor.new(output, @key, offset = @offset)
     #we want to return the decrypted message here.
   end
 
