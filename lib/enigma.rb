@@ -56,6 +56,9 @@ class Enigma
       i = 0 if i == 4
     end    
     cracked_message = cracked_chars.reverse.join
+    cracked_file = File.open("./lib/cracked.txt", "w")
+    cracked_file.write(cracked_message)
+    p "Created 'cracked.txt' without a key or date."
     p cracked_message
     
     
