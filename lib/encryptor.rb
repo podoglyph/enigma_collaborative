@@ -47,10 +47,8 @@ class Encryptor
   def rotate_map
     rotation_value
      @values.map do |value|
-       #rotated_map << character_map.rotate(value).first
        rotated_map << character_map.rotate(value)
      end
-     #rotated_map
      rotated_map.each do |rotation|
       encrypted_chars << rotation.first
     end
@@ -60,12 +58,6 @@ class Encryptor
   def encryptor
     rotate_map
     @encrypted_message << encrypted_chars.join
-    # encrypted_file = File.open("./lib/encrypted.txt", "w")
-    # encrypted_file.write(encrypted_message)
-    # p "Created 'encrypted.txt' with the key #{offset_calc.key} and date #{offset_calc.date} "
   end
 
 end
-
-# e = Encryptor.new("hello")
-# e.encryptor

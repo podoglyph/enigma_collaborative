@@ -37,7 +37,6 @@ class Decryptor
       decrypted_file = File.open("./lib/decrypted.txt", "w")
       decrypted_file.write(decrypted_message)
       p "Created 'decrypted.txt' with the key #{key} and date #{today_date} "
-
     end
 
 end

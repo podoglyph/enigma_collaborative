@@ -1,18 +1,14 @@
-require 'pry'
-require 'pry-state'
 require './lib/encryptor.rb'
 require './lib/decryptor.rb'
 
 class Enigma
   attr_reader :my_message, :key, :offset, :rotated_map,
-
               :character_map
 
   def initialize
     @my_message = my_message
     @offset = nil
     @rotated_map = nil
-
     @character_map = (' '..'z').to_a
   end
 
@@ -20,7 +16,6 @@ class Enigma
     encryption = Encryptor.new(my_message)
     encryption.encryptor
     @key = encryption.offset_calc.key
-    # @formatted_date = encryption.offset_calc.formatted_date
     @formatted_date = encryption.offset_calc.format_date
     @the_date = encryption.offset_date
     @offset = encryption.offset_values
@@ -32,7 +27,6 @@ class Enigma
     decryption = Decryptor.new(output, @key, date = @the_date, offset = @offset, rotated_map = @rotated_map)
     decryption.decryptor
     decryption.decrypted_message
-    #we want to return the decrypted message here.
   end
 
   def crack(output, date = @formatted_date)
@@ -60,9 +54,5 @@ class Enigma
     cracked_file.write(cracked_message)
     p "Created 'cracked.txt' without a key or date."
     p cracked_message
-    
-    
   end
-
-
 end
